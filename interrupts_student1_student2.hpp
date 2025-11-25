@@ -44,7 +44,7 @@ std::ostream& operator<<(std::ostream& os, const enum states& s) { //Overloading
 struct memory_partition{
     unsigned int    partition_number;
     unsigned int    size;
-    int             occupied;
+    int             occupied; // 1 if occupied, -1 if free
 } memory_paritions[] = {
     {1, 40, -1},
     {2, 25, -1},
@@ -65,6 +65,7 @@ struct PCB{
     enum states     state;
     unsigned int    io_freq;
     unsigned int    io_duration;
+    unsigned int    priority;
 };
 
 //------------------------------------HELPER FUNCTIONS FOR THE SIMULATOR------------------------------

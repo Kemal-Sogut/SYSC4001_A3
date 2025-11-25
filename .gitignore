@@ -1,1 +1,5 @@
 .vscode/
+bin/interrupts_EP
+bin/interrupts_EP_RR
+bin/interrupts_RR
+build.sh
