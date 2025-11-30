@@ -65,8 +65,12 @@ struct PCB{
     enum states     state;
     unsigned int    io_freq;
     unsigned int    io_duration;
-    unsigned int    priority;
+
+    int    io_wait_remaining;
+    int   processed_time;
+    int   quantum;
 };
+    
 
 //------------------------------------HELPER FUNCTIONS FOR THE SIMULATOR------------------------------
 // Following function was taken from stackoverflow; helper function for splitting strings
@@ -191,6 +195,23 @@ std::string print_exec_status(unsigned int current_time, int PID, states old_sta
     return buffer.str();
 }
 
+
+std::string print_bonus_status(unsigned int current_time, int PID) {
+
+    const int tableWidth = 49;
+
+    std::stringstream buffer;
+
+    buffer  << "|"
+            << std::setfill(' ') << std::setw(2) << "Process "
+            << std::setw(3) << PID
+            << std::setfill(' ') << std::setw(2) << " Completed at time: "
+            << std::setfill(' ') << std::setw(2) << current_time
+            << std::setw(2) << "|" << std::endl;
+
+    return buffer.str();
+}
+
 std::string print_exec_footer() {
     const int tableWidth = 49;
     std::stringstream buffer;
@@ -267,10 +288,12 @@ PCB add_process(std::vector<std::string> tokens) {
     process.remaining_time = std::stoi(tokens[3]);
     process.io_freq = std::stoi(tokens[4]);
     process.io_duration = std::stoi(tokens[5]);
+    process.io_wait_remaining = std::stoi(tokens[5]); // Wait time initialized to io_duration to be reduced to 0 eventually during IO
     process.start_time = -1;
     process.partition_number = -1;
     process.state = NOT_ASSIGNED;
-
+    process.processed_time = 0;
+    process.quantum = 0;
     return process;
 }
 
@@ -296,8 +319,8 @@ void terminate_process(PCB &running, std::vector<PCB> &job_queue) {
 
 //set the process in the ready queue to runnning
 void run_process(PCB &running, std::vector<PCB> &job_queue, std::vector<PCB> &ready_queue, unsigned int current_time) {
-    running = ready_queue.back();
-    ready_queue.pop_back();
+    running = ready_queue.front();      // Get FIRST element
+    ready_queue.erase(ready_queue.begin());  // Remove FIRST element
     running.start_time = current_time;
     running.state = RUNNING;
     sync_queue(job_queue, running);
@@ -314,6 +337,9 @@ void idle_CPU(PCB &running) {
     running.size = 0;
     running.state = NOT_ASSIGNED;
     running.PID = -1;
+    running.io_wait_remaining = 0;
+    running.processed_time = 0;
+    running.quantum = 0;
 }
 
 #endif
