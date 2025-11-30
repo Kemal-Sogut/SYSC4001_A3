@@ -121,7 +121,7 @@ std::tuple<std::string, std::string > run_simulation(std::vector<PCB> list_proce
             ready_queue.push_back(running);
             sync_queue(job_list, running);
             idle_CPU(running);
-            continue;
+           
             
         }
         

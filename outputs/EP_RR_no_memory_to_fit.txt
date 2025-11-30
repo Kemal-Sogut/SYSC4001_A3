@@ -1,0 +1,46 @@
++------------------------------------------------+
+|Time of Transition |PID | Old State | New State |
++------------------------------------------------+
+|                 0 |  1 |       NEW |     READY |
+|                 0 |  1 |     READY |   RUNNING |
+|                 1 |  2 |       NEW |     READY |
+|                 2 |  3 |       NEW |     READY |
+|                 3 |  4 |       NEW |     READY |
+|                10 |  9 |       NEW |     READY |
+|                19 |  1 |   RUNNING |TERMINATED |
+|                19 |  9 |     READY |   RUNNING |
+|                68 |  9 |   RUNNING |TERMINATED |
+|                68 |  4 |     READY |   RUNNING |
+|               102 |  4 |   RUNNING |TERMINATED |
+|               102 |  3 |     READY |   RUNNING |
+|               105 |  3 |   RUNNING |   WAITING |
+|               106 |  2 |     READY |   RUNNING |
+|               107 |  3 |   WAITING |     READY |
+|               130 |  2 |   RUNNING |TERMINATED |
+|               130 |  3 |     READY |   RUNNING |
+|               133 |  3 |   RUNNING |   WAITING |
+|               135 |  3 |   WAITING |     READY |
+|               135 |  3 |     READY |   RUNNING |
+|               138 |  3 |   RUNNING |   WAITING |
+|               140 |  3 |   WAITING |     READY |
+|               140 |  3 |     READY |   RUNNING |
+|               143 |  3 |   RUNNING |   WAITING |
+|               145 |  3 |   WAITING |     READY |
+|               145 |  3 |     READY |   RUNNING |
+|               148 |  3 |   RUNNING |   WAITING |
+|               150 |  3 |   WAITING |     READY |
+|               150 |  3 |     READY |   RUNNING |
+|               153 |  3 |   RUNNING |   WAITING |
+|               155 |  3 |   WAITING |     READY |
+|               155 |  3 |     READY |   RUNNING |
+|               158 |  3 |   RUNNING |   WAITING |
+|               160 |  3 |   WAITING |     READY |
+|               160 |  3 |     READY |   RUNNING |
+|               163 |  3 |   RUNNING |   WAITING |
+|               165 |  3 |   WAITING |     READY |
+|               165 |  3 |     READY |   RUNNING |
+|               168 |  3 |   RUNNING |   WAITING |
+|               170 |  3 |   WAITING |     READY |
+|               170 |  3 |     READY |   RUNNING |
+|               172 |  3 |   RUNNING |TERMINATED |
++------------------------------------------------+
